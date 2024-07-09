@@ -1,0 +1,149 @@
+.custum-file-upload {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e8e8e8;
+    background-color: #212121;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px #e8e8e8;
+  }
+  
+  .custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .icon svg {
+    height: 80px;
+    fill: #e8e8e8;
+  }
+  
+  .custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+  }
+  
+  .custum-file-upload input {
+    display: none;
+  }
+
+  .mint-button {
+    --glow-color: rgb(217, 176, 255);
+    --glow-spread-color: rgba(191, 123, 255, 0.781);
+    --enhanced-glow-color: rgb(231, 206, 255);
+    --btn-color: rgb(100, 61, 136);
+    border: .25em solid var(--glow-color);
+    /* 设定宽度和高度相等，例如5em，您可以根据需要调整 */
+    width: 15em;
+    height: 15em;
+    line-height: 5em; /* 保证文本垂直居中 */
+    padding: 0; /* 由于设定了固定宽高，可能需要移除或调整内边距 */
+    color: var(--glow-color);
+    font-size: 30px;
+    font-weight: bold; /* 之前的font-weight值修正为bold */
+    background-color: var(--btn-color);
+    /* 保持圆角，但您可以根据喜好调整这个值 */
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+           0 0 4em 1em var(--glow-spread-color),
+           inset 0 0 .75em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+   
+
+   
+.mint-button:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+           0 0 4em 2em var(--glow-spread-color),
+           inset 0 0 .75em .25em var(--glow-color);
+   }
+   
+   .mint-button:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+           0 0 2.5em 2em var(--glow-spread-color),
+           inset 0 0 .5em .25em var(--glow-color);
+   }
+
+.NFTUP{
+    
+    display: flex; /* 使用Flexbox布局 */
+    justify-content: center;
+    align-items: center;
+}
+
+.imgup{
+   margin-top: 150px;
+   margin-right: 400px;
+}
+
+.UP{
+    margin-top: 150px;
+}
+
+/* 图片裁剪 */
+#cropModal {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 32.5%;
+  width: 600px;
+  height: 600px;
+  background-color: #212121;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* overflow: hidden; 确保超出部分不可见 */
+  border-radius: 10px;
+}
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+img {
+  max-width: 100%;
+}
+.modal-buttons {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#cropButton{
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(171, 255, 171);
+  border-radius: 10px;
+}
+
+#cancelButton{
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(255, 174, 174);
+  border-radius: 10px;
+}

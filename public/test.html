@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mint.css">
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
+    <script src="https://unpkg.com/cropperjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script> 
+    <script src="/js/connect.js"></script>
+    <script src="/js/contract.js"></script>
+    <script src="/js/mint.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jbody">
+
+            <div class="jiange"></div>
+            
+            <div class="daohang">
+                <div class="wrapper">
+                    <div class="option">
+                        <input  value="option1" name="btn" type="radio" class="input" onclick="window.location.href='index.html'" />
+                        <div class="btn">
+                            <span class="span">首页</span>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <input value="option2" name="btn" type="radio" class="input" onclick="window.location.href='my.html'" />
+                        <div class="btn">
+                            <span class="span">我的</span>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <input checked="" value="option3" name="btn" type="radio" class="input" onclick="window.location.href='mint.html'" />
+                        <div class="btn">
+                            <span class="span">铸造</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="connect">
+                    <button onclick="connectWallet()" class="connect-button">
+                        <span>
+                        <svg width="23" height="24" viewbox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.125 17.75V18.7083C20.125 19.2167 19.9231 19.7042 19.5636 20.0636C19.2042 20.4231 18.7167 20.625 18.2083 20.625H4.79167C3.72792 20.625 2.875 19.7625 2.875 18.7083V5.29167C2.875 4.78333 3.07693 4.29582 3.43638 3.93638C3.79582 3.57693 4.28334 3.375 4.79167 3.375H18.2083C18.7167 3.375 19.2042 3.57693 19.5636 3.93638C19.9231 4.29582 20.125 4.78333 20.125 5.29167V6.25H11.5C10.4363 6.25 9.58333 7.1125 9.58333 8.16667V15.8333C9.58333 16.3417 9.78527 16.8292 10.1447 17.1886C10.5042 17.5481 10.9917 17.75 11.5 17.75H20.125ZM11.5 15.8333H21.0833V8.16667H11.5V15.8333ZM15.3333 13.4375C14.9521 13.4375 14.5865 13.286 14.3169 13.0165C14.0473 12.7469 13.8958 12.3812 13.8958 12C13.8958 11.6188 14.0473 11.2531 14.3169 10.9835C14.5865 10.714 14.9521 10.5625 15.3333 10.5625C15.7146 10.5625 16.0802 10.714 16.3498 10.9835C16.6194 11.2531 16.7708 11.6188 16.7708 12C16.7708 12.3812 16.6194 12.7469 16.3498 13.0165C16.0802 13.286 15.7146 13.4375 15.3333 13.4375Z" fill="white"></path>
+                        </svg>
+                        </span>
+                        <span class="contest"><span id="walletAddress" >Connect</span></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="jiange"></div>
+
+            <div class="welcome">
+                <div class="ILIKEYOU">HI ! I LIKE YOU ♥</div>
+            </div>
+
+
+            <div class="NFTUP">
+                <div class="box imgup">
+                    <label for="file" class="custum-file-upload">
+                        <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> </g></svg>
+                        
+                        <div class="text">
+                            <span>Up image</span>
+                        </div>
+                    </div>
+                        <input id="file" type="file" accept="image/*" style="display: none;">
+                    </label>
+                </div>
+
+                <div class="box UP">
+                    <button class="mint-button" onclick="mint()"> 铸造</button>
+                </div>
+            </div>
+            <button onclick="heyue()">点击</button>
+        </div>
+    </div>
+
+<!-- 图片裁剪 -->
+    <div id="overlay"></div>
+    <div id="cropModal">
+        <div class="modal-content">
+            <img id="imageToCrop" src="" alt="Image to Crop">
+            <div class="modal-buttons">
+                <button id="cropButton">裁剪</button>
+                <button id="cancelButton">取消</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
