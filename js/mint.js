@@ -116,6 +116,6 @@ async function mintNFT() {
 }
 
 async function mint() {
-  await mintNFT();
+  // await mintNFT();
     uploadImage();
   }

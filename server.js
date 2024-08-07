@@ -13,6 +13,7 @@ app.use('/image1', express.static(path.join(__dirname, 'image1')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/tokenURI',express.static(path.join(__dirname, 'tokenURI')));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,11 +32,34 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post('/api/image1', upload.single('file'), (req, res) => {
+async function getImageCount() {
+  const files = await fs.promises.readdir(uploadDir);
+  return files.length;
+}
+
+app.post('/api/image1', upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file selected' });
     }
+    const tokenId = await getImageCount(); // 获取图像数量或者其他标识
+    console.log(`Uploaded image ${tokenId}`);
+    // 构造 NFT 数据
+    const nftData = {
+      id: tokenId,
+      name: `NFT #${tokenId}`,
+      description: `这是NFT #${tokenId}`,
+      image: `/image1/${tokenId}.png`,
+      attributes: [
+        { }
+      ]
+    };
+
+    // 将 NFT 数据写入 JSON 文件
+    const jsonData = JSON.stringify(nftData, null, 2);
+    const jsonFilePath = path.join(__dirname, 'tokenURI', `${tokenId}.json`);
+    fs.writeFileSync(jsonFilePath, jsonData);
+
     res.status(200).json({ success: true, filename: req.file.filename });
   } catch (error) {
     console.error('Error uploading file:', error);
@@ -52,6 +76,33 @@ app.get('/api/image1', (req, res) => {
     res.json({ count: files.length });
   });
 });
+
+app.get('/api/tokenURI/:tokenId', (req, res) => {
+  const tokenId = req.params.tokenId;
+  const jsonFilePath = path.join(__dirname, 'tokenURI', `${tokenId}.json`);
+
+  fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON file:', err);
+      return res.status(500).json({ error: 'Server error' });
+    }
+    const jsonData = JSON.parse(data);
+    res.json(jsonData);
+  });
+});
+
+async function getImageCount() {
+  const uploadDir = path.join(__dirname, 'image1');
+  return new Promise((resolve, reject) => {
+    fs.readdir(uploadDir, (err, files) => {
+      if (err) {
+        return reject(err);
+      }
+      const imageCount = files.length;
+      resolve(imageCount);
+    });
+  });
+}
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
