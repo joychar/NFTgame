@@ -3,11 +3,41 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const app = express();
+const PORT = process.env.PORT || 5500;
 
 const uploadDir = path.join(__dirname, 'image1');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
+
+let uris = [];
+
+app.get('/uris', (req, res) => {
+  res.json(uris);
+})
+
+app.get('/uris/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const uri = uris.find(uri => uri.id === id); 
+
+  if (uri) {
+    res.json(uri);
+  } else {
+    res.status(404).json({ message: '未找到' });
+  }
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public/index.html'));  
+});
+
+app.get('/my', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public/my.html'));  
+});
+
+app.get('/mint', (req, res) => {
+  res.sendFile(path.join(__dirname + '/public/mint.html'));  
+});
 
 app.use('/image1', express.static(path.join(__dirname, 'image1')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,7 +72,7 @@ app.post('/api/image1', upload.single('file'), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No file selected' });
     }
-    const tokenId = await getImageCount(); // 获取图像数量或者其他标识
+    const tokenId = await getImageCount() - 1; // 获取图像数量或者其他标识
     console.log(`Uploaded image ${tokenId}`);
     // 构造 NFT 数据
     const nftData = {
@@ -54,6 +84,8 @@ app.post('/api/image1', upload.single('file'), async (req, res) => {
         { }
       ]
     };
+
+    uris.push(nftData);
 
     // 将 NFT 数据写入 JSON 文件
     const jsonData = JSON.stringify(nftData, null, 2);
@@ -104,7 +136,6 @@ async function getImageCount() {
   });
 }
 
-const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

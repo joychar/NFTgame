@@ -49,14 +49,14 @@ async function singleconnect() {
 
 async function swap() {
   const currentChainId = await ethereum.request({ method: "eth_chainId" });
-  if (currentChainId !== PlatONDevTestnet2.chainId) {
+  if (currentChainId !== PlatON_Devnet2.chainId) {
       try {
           // 尝试切换到目标网络
           await ethereum.request({
               method: "wallet_switchEthereumChain",
-              params: [{ chainId: PlatONDevTestnet2.chainId }],
+              params: [{ chainId: PlatON_Devnet2.chainId }],
           });
-          console.log(`Switched to network: ${PlatONDevTestnet2.chainName}`);
+          console.log(`Switched to network: ${PlatON_Devnet2.chainName}`);
       } catch (switchError) {
           // 错误代码 4902 表示目标网络未添加
           if (switchError.code === 4902) {
@@ -65,15 +65,15 @@ async function swap() {
                       method: "wallet_addEthereumChain",
                       params: [
                           {
-                              chainId: PlatONDevTestnet2.chainId,
-                              chainName: PlatONDevTestnet2.chainName,
-                              nativeCurrency: PlatONDevTestnet2.nativeCurrency,
-                              rpcUrls: PlatONDevTestnet2.rpcUrls,
-                              blockExplorerUrls: PlatONDevTestnet2.blockExplorerUrls,
+                              chainId: PlatON_Devnet2.chainId,
+                              chainName: PlatON_Devnet2.chainName,
+                              nativeCurrency: PlatON_Devnet2.nativeCurrency,
+                              rpcUrls: PlatON_Devnet2.rpcUrls,
+                              blockExplorerUrls: PlatON_Devnet2.blockExplorerUrls,
                           },
                       ],
                   });
-                  console.log(`Network added successfully: ${PlatONDevTestnet2.chainName}`);
+                  console.log(`Network added successfully: ${PlatON_Devnet2.chainName}`);
               } catch (addError) {
                   console.error("Error adding network:", addError);
               }
@@ -82,7 +82,7 @@ async function swap() {
           }
       }
   } else {
-      console.log(`Already on the target network: ${PlatONDevTestnet2.chainName}`);
+      console.log(`Already on the target network: ${PlatON_Devnet2.chainName}`);
   }
 }
 

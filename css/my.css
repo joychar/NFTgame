@@ -29,13 +29,13 @@
 #transfer{
     margin-left: 100px;
     align-items: center;
-    background-color:#16A1FF;
+    background-color:#4e4f51;
     opacity: 0.8;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(255, 253, 128, 0.85);
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -113,12 +113,27 @@
     background-color: lightblue;
 }
 
-.recaddress{
-    font-size: 17px;
-    font-weight: 600;
+
+
+#recipientAddress {
+    height: 100px;
+
 }
 
 .button-submit{
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 1.5rem;
+  color: #000000;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+  background: #add8e6;
+  box-shadow: 3px 3px #000000;
+  cursor: pointer;
+  margin: 35px 0;
 }
+
+.button-submit:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+  }
